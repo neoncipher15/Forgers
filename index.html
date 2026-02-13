@@ -7,169 +7,243 @@
   <link rel="icon" href="Forge.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0b0f14;
-      --card: #121824;
-      --accent: #6cf2c2;
-      --accent2: #7aa2ff;
-      --text: #e6e9ef;
-      --muted: #9aa4b2;
-    }
+   
+  :root {
+    --bg: #0b0f14;
+    --card: #121824;
+    --accent: #6cf2c2;
+    --accent2: #7aa2ff;
+    --text: #e6e9ef;
+    --muted: #9aa4b2;
+    --shadow: rgba(108, 242, 194, 0.25);
+  }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+  }
 
-    body {
-      scroll-behavior: smooth;
-      background: radial-gradient(circle at top, #10182a, var(--bg));
-      color: var(--text);
-      min-height: 100vh;
-    }
+  body {
+    scroll-behavior: smooth;
+    background: radial-gradient(circle at top, #10182a, var(--bg));
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-    header {
-      padding: 2rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  header {
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(11, 15, 20, 0.7);
+    border-bottom: 1px solid #1f2a44;
+  }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: var(--accent);
-    }
+  .logo {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
 
-    nav a {
-      margin-left: 2rem;
-      text-decoration: none;
-      color: var(--muted);
-      font-weight: 500;
-      transition: color 0.2s;
-    }
+  nav a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 500;
+    transition: 0.3s ease;
+    position: relative;
+  }
 
-    nav a:hover {
-      color: var(--accent2);
-    }
+  nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--accent2);
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s ease;
+  }
 
-    .hero {
-      padding: 6rem 3rem;
-      max-width: 1100px;
-      margin: auto;
-    }
+  nav a:hover::after {
+    width: 100%;
+  }
 
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.1;
-    }
+  .hero {
+    padding: 8rem 3rem;
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+    animation: fadeIn 1.5s ease forwards;
+  }
 
-    .hero span {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  .hero h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
 
-    .hero p {
-      margin-top: 1.5rem;
-      max-width: 600px;
-      font-size: 1.1rem;
-      color: var(--muted);
-    }
+  .hero span {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
 
-    .buttons {
-      margin-top: 2.5rem;
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-    }
+  .hero p {
+    margin-top: 1.5rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.15rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
 
-    .btn {
-      padding: 0.9rem 1.6rem;
-      border-radius: 12px;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+  .buttons {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
 
-    .btn-primary {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      color: #000;
-      box-shadow: 0 10px 30px rgba(108, 242, 194, 0.3);
-    }
+  .btn {
+    padding: 0.9rem 2rem;
+    border-radius: 14px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
 
-    .btn-secondary {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid #1f2937;
-    }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    color: #000;
+    box-shadow: 0 12px 25px var(--shadow);
+  }
 
-    .btn:hover {
-      transform: translateY(-3px);
-    }
+  .btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px var(--shadow);
+  }
 
-    .section {
-      padding: 4rem 3rem;
-      max-width: 1100px;
-      margin: auto;
-    }
+  .btn-secondary {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid #1f2937;
+  }
 
-    .section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-    }
+  .section {
+    padding: 6rem 3rem;
+    max-width: 1100px;
+    margin: auto;
+  }
 
-    .section p {
-      color: var(--muted);
-      max-width: 700px;
-    }
+  .section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-    .projects {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
+  .section p {
+    color: var(--muted);
+    max-width: 750px;
+    margin-bottom: 2rem;
+  }
 
-    .card {
-      background: linear-gradient(180deg, #121a2b, #0e1422);
-      padding: 2rem;
-      border-radius: 18px;
-      border: 1px solid #1f2a44;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+  .projects {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.2rem;
+  }
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    }
+  .card {
+    background: linear-gradient(180deg, #121a2b, #0e1422);
+    padding: 2rem;
+    border-radius: 22px;
+    border: 1px solid #1f2a44;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
 
-    .card h3 {
-      margin-bottom: 0.6rem;
-    }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, var(--accent), var(--accent2), var(--accent));
+    opacity: 0.1;
+    transform: rotate(25deg);
+    transition: all 0.5s ease;
+  }
 
-    .status {
-      font-size: 0.8rem;
-      margin-left: 0.4rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 999px;
-      background: #1f2937;
-      color: var(--muted);
-    }
+  .card:hover::before {
+    opacity: 0.2;
+    transform: rotate(45deg);
+  }
 
-    footer {
-      padding: 2rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-      border-top: 1px solid #1f2937;
-    }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .card h3 {
+    margin-bottom: 0.6rem;
+    font-size: 1.4rem;
+  }
+
+  .card p {
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .status {
+    font-size: 0.8rem;
+    margin-left: 0.4rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    background: #1f2937;
+    color: var(--muted);
+  }
+
+  footer {
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    border-top: 1px solid #1f2a44;
+    margin-top: 4rem;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.8rem; }
+    .section h2 { font-size: 2rem; }
+    nav a { margin-left: 1rem; }
+  }
+
+
   </style>
 </head>
 <body>
